@@ -13,12 +13,13 @@ import useAddItem from '@framework/cart/use-add-item'
 import useRemoveItem from '@framework/wishlist/use-remove-item'
 
 interface Props {
-  product: Product
+  item: any
 }
 
 const placeholderImg = '/product-img-placeholder.svg'
 
-const WishlistCard: FC<Props> = ({ product }) => {
+const WishlistCard: FC<Props> = ({ item }) => {
+  const product: Product = item.product
   const { price } = usePrice({
     amount: product.price?.value,
     baseAmount: product.price?.retailPrice,
@@ -40,7 +41,7 @@ const WishlistCard: FC<Props> = ({ product }) => {
     try {
       // If this action succeeds then there's no need to do `setRemoving(true)`
       // because the component will be removed from the view
-      await removeItem({ id: product.id! })
+      await removeItem({ id: item.id })
     } catch (error) {
       setRemoving(false)
     }
