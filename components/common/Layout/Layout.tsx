@@ -20,7 +20,7 @@ import LoginView from '@components/auth/LoginView'
 import s from './Layout.module.css'
 
 const Loading = () => (
-  <div className="w-80 h-80 flex items-center text-center justify-center p-3">
+  <div className="flex items-center justify-center p-3 text-center w-80 h-80">
     <LoadingDots />
   </div>
 )
@@ -31,22 +31,22 @@ const dynamicProps = {
 
 const SignUpView = dynamic(
   () => import('@components/auth/SignUpView'),
-  dynamicProps
+  { ... dynamicProps }
 )
 
 const ForgotPassword = dynamic(
   () => import('@components/auth/ForgotPassword'),
-  dynamicProps
+  { ... dynamicProps }
 )
 
 const FeatureBar = dynamic(
   () => import('@components/common/FeatureBar'),
-  dynamicProps
+  { ... dynamicProps }
 )
 
 const Modal = dynamic(
   () => import('@components/ui/Modal'),
-  Object.assign(dynamicProps, { ssr: false })
+  { ... dynamicProps, ssr: false }
 )
 
 interface Props {
